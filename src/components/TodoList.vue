@@ -1,7 +1,6 @@
 <template>
   <div class="container shadow-lg px-5 py-5 rounded-3">
     <h1 class="mb-5">Планировщик задач</h1>
-
     <div class="d-flex mb-5">
       <input
           v-model="newTodoItemText"
@@ -29,15 +28,15 @@
       <div class="col-5 text-end action-btn">
         <div class="d-flex justify-content-end">
           <div @click="moveUpTodoItem(index)">
-            <i class="ms-4">U</i>
+            <BIconArrowUp class="ms-4"/>
           </div>
           <div @click="moveDownTodoItem(index)">
-            <i class="ms-4">D</i>
+            <BIconArrowDown class="ms-4"/>
           </div>
           <div @click="changeTodoItemStatus(index)">
-            <i class="ms-4">
-              {{ todoItem.status === todoItemStatuses.InProgress ? 'Done' : 'InProgress' }}
-            </i>
+<!--            {{ todoItem.status === todoItemStatuses.InProgress ?-->
+<!--              <BIconBagCheck/>:-->
+<!--            <BIconArrowDown/> }}-->
           </div>
           <div @click="deleteTodoItem(index)">
             <i class="ms-4">DEL</i>
@@ -76,6 +75,7 @@
 </template>
 
 <script>
+import { BIconArrowDown,BIconArrowUp} from 'bootstrap-icons-vue';
 
 export default {
   name: 'TodoList',
@@ -85,6 +85,10 @@ export default {
       todoItemStatuses: {InProgress: "InProgress", Done: "Done"},
       todoItems: []
     }
+  },
+  components: {
+    BIconArrowDown,
+    BIconArrowUp,
   },
   methods: {
     addNewTodoItem() {
